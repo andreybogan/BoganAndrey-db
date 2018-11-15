@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `countries` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `countries`;
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 192.168.1.34    Database: countries
@@ -26,13 +24,16 @@ DROP TABLE IF EXISTS `cities`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_region` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `importand` tinyint(1) NOT NULL,
+  `region_id` int(11) NOT NULL,
   `id_district` int(11) DEFAULT NULL,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` enum('city','village') COLLATE utf8mb4_unicode_ci DEFAULT 'city',
   PRIMARY KEY (`id`),
-  KEY `id_region_city_idx` (`id_region`),
-  CONSTRAINT `id_region_city` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id`)
+  KEY `id_region_city_idx` (`region_id`),
+  KEY `title_index` (`title`),
+  KEY `country_id_idx` (`country_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,7 +43,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,1,NULL,'Москва','city'),(2,2,1,'Самара','city'),(3,2,2,'Красная глинка','city'),(4,3,NULL,'Бургас','city'),(5,3,NULL,'Несебр','city'),(6,4,NULL,'София','city'),(7,4,NULL,'Лозен','village');
+INSERT INTO `cities` VALUES (1,0,0,1,NULL,'Москва','city'),(2,0,0,2,1,'Самара','city'),(3,0,0,2,2,'Красная глинка','city'),(4,0,0,3,NULL,'Бургас','city'),(5,0,0,3,NULL,'Несебр','city'),(6,0,0,4,NULL,'София','city'),(7,0,0,4,NULL,'Лозен','village');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12  0:13:45
+-- Dump completed on 2018-11-15  8:39:50

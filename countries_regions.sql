@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `countries` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `countries`;
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 192.168.1.34    Database: countries
@@ -26,11 +24,11 @@ DROP TABLE IF EXISTS `regions`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `regions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_country` int(11) NOT NULL,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_country_idx` (`id_country`),
-  CONSTRAINT `id_country` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id`)
+  KEY `id_country_idx` (`country_id`),
+  CONSTRAINT `id_country` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12  0:13:45
+-- Dump completed on 2018-11-15  8:39:50
